@@ -5,54 +5,69 @@ const tSensors lightSensor = (tSensors) S2;
 
 task main()
 {
-	int cond = 1;
+	int condition = 1;
 
-	while(cond == 1)
+	while(condition == 1)
 	{
 
-		while(SensorValue(lightSensor) >= 46) //while on WHITE
+		while(SensorValue(lightSensor) >= 45) //while on WHITE
 	 		{
-				setMotorSync(motorB, motorC, 0, 50);
+				//goes straight
+				//setMotorSync(motorB, motorC, 0, 50);
+				motor[motorB] = 50;
+				mototr[motorC] =50;
 	 		}
+		
 	 	if(nMotorEncoder(motorB) < 90)
 	 		{
-	 			cond = 0;
+	 			condition = 0;
 	 		}
 
-	 	while(SensorValue(lightSensor) < 46) // while on BLACK
+	 	while(SensorValue(lightSensor) < 45) // while on BLACK
 	 		{
 	 			setMotorSync(motorB, motorC, 0, 50);
 	 			nMotorEncoder(motorB) = 0;
 	 		}
 	}
-
+	
+	//reverse
 	setMotorSync(motorB, motorC, 0, -50);
 	wait1Msec(550);
+	
+	//turns around
 	setMotorSync(motorB, motorC, 50, 50);
 	wait1Msec(750);
-	cond = 1;
+	
+	condition = 1;
 
-	while(cond == 1)
+
+
+	while(condition == 1)
 	{
 
 		while(SensorValue(lightSensor) >= 46) //while on WHITE
 	 		{
+				//straight
 				setMotorSync(motorB, motorC, 0, 50);
 	 		}
 	 	if(nMotorEncoder(motorB) < 90)
 	 		{
-	 			cond = 0;
+	 			condition = 0;
 	 		}
 
 	 	while(SensorValue(lightSensor) < 46) // while on BLACK
 	 		{
+				//straight
 	 			setMotorSync(motorB, motorC, 0, 50);
 	 			nMotorEncoder(motorB) = 0;
 	 		}
 	}
 
+	//reverse
 	setMotorSync(motorB, motorC, 0, -50);
 	wait1Msec(550);
+	
+	//turns around 
 	setMotorSync(motorB, motorC, 50, 50);
 	wait1Msec(750);
 

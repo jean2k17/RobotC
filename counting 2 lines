@@ -1,0 +1,57 @@
+const tSensors lightSensor = (tSensors) S3;
+
+task main()
+{
+	int cond = 1;
+
+	while(cond == 1)
+	{
+
+		while(SensorValue(lightSensor) >= 46) //while on WHITE
+	 		{
+				setMotorSync(motorB, motorC, 0, 50);
+	 		}
+	 	if(nMotorEncoder(motorB) < 90)
+	 		{
+	 			cond = 0;
+	 		}
+
+	 	while(SensorValue(lightSensor) < 46) // while on BLACK
+	 		{
+	 			setMotorSync(motorB, motorC, 0, 50);
+	 			nMotorEncoder(motorB) = 0;
+	 		}
+	}
+
+	setMotorSync(motorB, motorC, 0, -50);
+	wait1Msec(550);
+	setMotorSync(motorB, motorC, 50, 50);
+	wait1Msec(750);
+	cond = 1;
+
+	while(cond == 1)
+	{
+
+		while(SensorValue(lightSensor) >= 46) //while on WHITE
+	 		{
+				setMotorSync(motorB, motorC, 0, 50);
+	 		}
+	 	if(nMotorEncoder(motorB) < 90)
+	 		{
+	 			cond = 0;
+	 		}
+
+	 	while(SensorValue(lightSensor) < 46) // while on BLACK
+	 		{
+	 			setMotorSync(motorB, motorC, 0, 50);
+	 			nMotorEncoder(motorB) = 0;
+	 		}
+	}
+
+	setMotorSync(motorB, motorC, 0, -50);
+	wait1Msec(550);
+	setMotorSync(motorB, motorC, 50, 50);
+	wait1Msec(750);
+
+}
+ 
